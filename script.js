@@ -7,7 +7,7 @@ const player = (sign) =>{
 
 // Need an object for the board
 const gameBoard = (() => {
-    let board = ['x', 'x', 'x', 'o', '', '', '', '', 'x'];
+    let board = ['', '', '', '', '', '', '', '', ''];
     const resetBoard = () => {
         board = ['', '', '', '', '', '', '', '', ''];
     }
@@ -39,40 +39,51 @@ const gameBoard = (() => {
 const displayController = ((game) => {
     xPlayer = player('x');
     oPlayer = player('o');
-    let cells = document.querySelectorAll('.cell'); 
-    let status = document.getElementById('status');
+    const cells = document.querySelectorAll('.cell'); 
+    const status = document.getElementById('status');
+    const reset = document.getElementById('reset');
+    const move_status = document.getElementById('moveStatus');
+    const board = document.getElementById('board');
+    
     let moves = 0;
     let currentPlayer = xPlayer;
-
+    
     const resetGame = () => {
         currentPlayer = xPlayer;
         moves = 0;
         status.innerText = '';
+        board.classList.remove('unclickable');
         game.resetBoard();
         renderBoard();
     }
-
+    
     // This would be better with the cells being classes, but for now I am going to keep them like this
     const setUpEventHandlers = () => {
         cells.forEach((cell, index) => {
             cell.addEventListener('click', () =>{
                 if(cell.innerText === ''){
                     let currentSign = currentPlayer.getSign()
-                    cell.innerText = currentSign;
                     game.changeBoard(index, currentSign);
                     if(game.isGameOver()){
                         status.innerText = ` ${currentPlayer.getSign()} wins`
+                        board.classList.add('unclickable');
                     }
                     // Just swap between players
                     currentSign == 'x' ? currentPlayer = oPlayer : currentPlayer = xPlayer;
+                    renderBoard();
                     moves++;
-                    console.log(moves);
-                    if(moves >= 9){
+                    if(moves >= 9 && !game.isGameOver()){
                         status.innerText = 'It is a draw';
                     }
                 }
             });
         });
+        
+        reset.addEventListener('click', () =>{
+            resetGame();
+        });
+
+
     }
 
     const clearBoard = () =>{
@@ -82,7 +93,8 @@ const displayController = ((game) => {
     }
     // Go through gameboard and render sign in the appropriate spot
     const renderBoard = () => {
-        // clearBoard();
+        move_status.innerText = `${currentPlayer.getSign()} to move`
+        console.log(cells);
         for([index, value] of game.getBoard().entries()){
             cells[index].innerText = value;
         }
@@ -90,10 +102,6 @@ const displayController = ((game) => {
     return{renderBoard, resetGame, setUpEventHandlers}
 })(gameBoard);
 
+// Only global calls we need
 displayController.renderBoard();
 displayController.setUpEventHandlers();
-
-reset = document.getElementById('reset')
-reset.addEventListener('click', () =>{
-    displayController.resetGame();
-})

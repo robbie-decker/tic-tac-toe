@@ -1,3 +1,7 @@
+:root{
+    --cell_background : #efefef
+}
+
 body{
     display: flex;
     flex-direction: column;
@@ -12,6 +16,12 @@ body{
     justify-content: center;
 }
 
+.unclickable{
+    pointer-events: none;
+}
+
+
+
 .cell{
     width: 100px;
     height: 100px;
@@ -20,4 +30,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--cell_background);
+}
+
+.cell:hover{
+    filter: brightness(80%);
 }
