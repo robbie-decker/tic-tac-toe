@@ -37,8 +37,8 @@ const gameBoard = (() => {
 })();
 
 const displayController = ((game) => {
-    xPlayer = player('x');
-    oPlayer = player('o');
+    xPlayer = player('X');
+    oPlayer = player('O');
     const cells = document.querySelectorAll('.cell'); 
     const status = document.getElementById('status');
     const reset = document.getElementById('reset');
@@ -69,7 +69,7 @@ const displayController = ((game) => {
                         board.classList.add('unclickable');
                     }
                     // Just swap between players
-                    currentSign == 'x' ? currentPlayer = oPlayer : currentPlayer = xPlayer;
+                    currentSign == 'X' ? currentPlayer = oPlayer : currentPlayer = xPlayer;
                     renderBoard();
                     moves++;
                     if(moves >= 9 && !game.isGameOver()){
@@ -81,7 +81,10 @@ const displayController = ((game) => {
         
         reset.addEventListener('click', () =>{
             resetGame();
+            reset.firstChild.classList.add("icon_spin");
         });
+
+        reset.firstChild.addEventListener('transitionend', (e) => e.target.classList.remove("icon_spin"));
 
 
     }
