@@ -79,7 +79,11 @@ const displayController = ((game) => {
             });
         });
         
-        reset.addEventListener('click', () =>{
+        reset.addEventListener('click', (e) =>{
+            // This allows the reset button animation to start over mid animation. Pretty cool :)
+            e.preventDefault;
+            reset.firstChild.classList.remove("icon_spin");
+            void reset.firstChild.offsetWidth;
             resetGame();
             reset.firstChild.classList.add("icon_spin");
         });

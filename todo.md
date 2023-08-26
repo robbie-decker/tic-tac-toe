@@ -1,0 +1,3 @@
+- [] Have Xs and Os fade onto board and fade off board
+- [] Implement computer opponent
+- [] Change to have 3d Xs and Os on board (maybe this is too hard)
