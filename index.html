@@ -9,6 +9,12 @@
 <body>
     <h1>Tic Tac Toe</h1>
     <!-- <div id = "gameSpace"> -->
+        <img src="imgs/animate-logo.svg" alt="">
+        <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path id="xPath" fill="none" stroke="black" stroke-width="5" d="M50,50 L150,150 M150,50 L50,150" />
+            <animate href="#xPath" attributeName="stroke-dasharray" from="200 200" to="0 200" dur="1.5s" begin="0s" fill="freeze"/>
+          </svg>
+          
         <p id="moveStatus"></p>
         <div class="board" id="board">
             <div class="cell"></div>

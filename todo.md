@@ -1,3 +1,4 @@
 - [] Have Xs and Os fade onto board and fade off board
+    - probably need to change putting signs in innerText to have p fields in our cell divs
 - [] Implement computer opponent
 - [] Change to have 3d Xs and Os on board (maybe this is too hard)
