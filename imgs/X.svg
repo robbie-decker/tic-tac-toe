@@ -1,0 +1,36 @@
+<svg width="38" height="36" viewBox="0 0 38 36" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style>.Vector_1_858 {
+	animation: 1s linear 0 1 normal forwards running Vector_1_858;
+}
+@keyframes Vector_1_858 {
+	0% {
+	}
+	100% {
+	}
+}.Vector_2_677 {
+	animation: 1s linear 0s 1 normal forwards running Vector_2_677;
+		opacity: 0;
+}
+@keyframes Vector_2_677 {
+	0% {
+		opacity: 0;
+	}
+	49% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+</style>
+<g clip-path="url(#clip_0_161)" width="38" height="36" data-name="Frame 1">
+	<rect width="38" height="36" fill="white" data-name="Frame 1"/>
+	<path d="M1 1L29.2843 1" stroke="black" stroke-width="2" stroke-linecap="round" data-name="Vector 1" class="Vector_1_858" transform="translate(9 8) rotate(45)" id="animation_863"/>
+	<path d="M1 1V29.2843" stroke="black" stroke-width="2" stroke-linecap="round" data-name="Vector 2" class="Vector_2_677" transform="translate(29 8) rotate(45)" id="animation_119"/>
+</g>
+<defs><clipPath id="clip_0_161"><rect width="38" height="36"/></clipPath><animate href="#animation_863" attributeName="d" calcMode="linear"  dur="1s" fill="freeze" keyTimes="0; 0.5; 1" values="M 0 0 L 0.7071067094802856 0; M 0 7.227590970160236e-9 L 28.284269332885742 0; M 0 7.227590970160236e-9 L 28.284269332885742 0" /><animate href="#animation_119" attributeName="d" calcMode="spline" keySplines="0 0 1 1;0 0.55 0.45 1" dur="1s" fill="freeze" keyTimes="0; 0.5; 1" values="M 5.960464477539063e-8 0 L 0 0.7071066498756409; M 5.960464477539063e-8 0 L 0 0.7071066498756409; M 0 0 L 0 28.284269332885742" />
+</defs>
+</svg>

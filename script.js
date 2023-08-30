@@ -39,6 +39,8 @@ const gameBoard = (() => {
 const displayController = ((game) => {
     xPlayer = player('X');
     oPlayer = player('O');
+    // const xSVG = document.getElementById("xSVG");
+    const oSVG = 0;
     const cells = document.querySelectorAll('.cell'); 
     const status = document.getElementById('status');
     const reset = document.getElementById('reset');
@@ -54,23 +56,24 @@ const displayController = ((game) => {
         status.innerText = '';
         board.classList.remove('unclickable');
         game.resetBoard();
-        renderBoard();
+        clearDisplay();
     }
     
     // This would be better with the cells being classes, but for now I am going to keep them like this
     const setUpEventHandlers = () => {
         cells.forEach((cell, index) => {
             cell.addEventListener('click', () =>{
-                if(cell.innerText === ''){
+                if(cell.innerHTML === ''){
                     let currentSign = currentPlayer.getSign()
                     game.changeBoard(index, currentSign);
                     if(game.isGameOver()){
                         status.innerText = ` ${currentPlayer.getSign()} wins`
                         board.classList.add('unclickable');
                     }
+                    renderSquare(index, currentSign);
                     // Just swap between players
                     currentSign == 'X' ? currentPlayer = oPlayer : currentPlayer = xPlayer;
-                    renderBoard();
+                    move_status.innerText = `${currentPlayer.getSign()} to move`
                     moves++;
                     if(moves >= 9 && !game.isGameOver()){
                         status.innerText = 'It is a draw';
@@ -87,28 +90,32 @@ const displayController = ((game) => {
             resetGame();
             reset.firstChild.classList.add("icon_spin");
         });
-
+        
         reset.firstChild.addEventListener('transitionend', (e) => e.target.classList.remove("icon_spin"));
-
-
     }
-
-    const clearBoard = () =>{
+    
+    const clearDisplay = () =>{
         for(cell of cells){
             cell.innerText = '';
         }
     }
     // Go through gameboard and render sign in the appropriate spot
-    const renderBoard = () => {
-        move_status.innerText = `${currentPlayer.getSign()} to move`
-        console.log(cells);
-        for([index, value] of game.getBoard().entries()){
-            cells[index].innerText = value;
+    // Should change to render square
+    const renderSquare = (index, sign) => {
+        if(sign === "X"){
+            // xSVG.src = "imgs/X.svg";
+
+
+            // let clone = xSVG.cloneNode(true);
+            // clone.contentDocument;
+            // cells[index].appendChild(xSVG);
+        }
+        else{
+            cells[index].innerText = sign;
         }
     }
-    return{renderBoard, resetGame, setUpEventHandlers}
+    return{resetGame, setUpEventHandlers, clearDisplay}
 })(gameBoard);
 
 // Only global calls we need
-displayController.renderBoard();
 displayController.setUpEventHandlers();
