@@ -54,6 +54,7 @@ const displayController = ((game) => {
         currentPlayer = xPlayer;
         moves = 0;
         status.innerText = '';
+        move_status.innerText = `${currentPlayer.getSign()} to move`;
         board.classList.remove('unclickable');
         game.resetBoard();
         clearDisplay();
@@ -79,6 +80,9 @@ const displayController = ((game) => {
                         status.innerText = 'It is a draw';
                     }
                 }
+            cell.addEventListener("transitionend", () => {
+                cell.firstChild.remove();
+            })
             });
         });
         
@@ -110,7 +114,9 @@ const displayController = ((game) => {
 
     const clearDisplay = () =>{
         for(cell of cells){
-            cell.innerText = '';
+            if(cell.firstChild !== null){
+                cell.firstChild.style.opacity = '0';
+            }
         }
     }
     // Go through gameboard and render sign in the appropriate spot

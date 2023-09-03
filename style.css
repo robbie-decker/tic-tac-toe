@@ -56,7 +56,8 @@ h1{
 .sign{
     width: 90px;
     height: 90px;
-    fill: red;
+    opacity: 1;
+    transition: opacity 1000ms linear;
 }
 
 .cell{
