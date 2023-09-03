@@ -49,11 +49,15 @@ h1{
 }
 
 .icon_spin{
-    transition: transform 1.5s ease-in-out;
-    transform: rotate(-3turn); 
+    transition: transform 1s ease-in-out;
+    transform: rotate(-2turn); 
 }
 
-
+.sign{
+    width: 90px;
+    height: 90px;
+    fill: red;
+}
 
 .cell{
     font-family: "XO";

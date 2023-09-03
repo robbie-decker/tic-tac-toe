@@ -37,10 +37,10 @@ const gameBoard = (() => {
 })();
 
 const displayController = ((game) => {
+    let xSVG;
+    let oSVG;
     xPlayer = player('X');
     oPlayer = player('O');
-    // const xSVG = document.getElementById("xSVG");
-    const oSVG = 0;
     const cells = document.querySelectorAll('.cell'); 
     const status = document.getElementById('status');
     const reset = document.getElementById('reset');
@@ -82,6 +82,8 @@ const displayController = ((game) => {
             });
         });
         
+        setUpAnimations();
+
         reset.addEventListener('click', (e) =>{
             // This allows the reset button animation to start over mid animation. Pretty cool :)
             e.preventDefault;
@@ -94,6 +96,18 @@ const displayController = ((game) => {
         reset.firstChild.addEventListener('transitionend', (e) => e.target.classList.remove("icon_spin"));
     }
     
+    // Sets up SVGs for placement of X and O
+    const setUpAnimations = () => {
+        xSVG = document.createElement("object");
+        xSVG.type = "image/svg+xml";
+        xSVG.data = "imgs/X.svg";
+        xSVG.classList.add("sign");
+        oSVG = document.createElement("object");
+        oSVG.type = "image/svg+xml";
+        oSVG.data = "imgs/O.svg";
+        oSVG.classList.add("sign");
+    }
+
     const clearDisplay = () =>{
         for(cell of cells){
             cell.innerText = '';
@@ -103,15 +117,10 @@ const displayController = ((game) => {
     // Should change to render square
     const renderSquare = (index, sign) => {
         if(sign === "X"){
-            // xSVG.src = "imgs/X.svg";
-
-
-            // let clone = xSVG.cloneNode(true);
-            // clone.contentDocument;
-            // cells[index].appendChild(xSVG);
+            cells[index].appendChild(xSVG.cloneNode(true));
         }
         else{
-            cells[index].innerText = sign;
+            cells[index].appendChild(oSVG.cloneNode(true));
         }
     }
     return{resetGame, setUpEventHandlers, clearDisplay}
